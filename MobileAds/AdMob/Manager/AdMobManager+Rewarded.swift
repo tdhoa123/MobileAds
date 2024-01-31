@@ -65,6 +65,9 @@ extension AdMobManager {
         if let topVC =  UIApplication.getTopViewController() {
             rewarded?.present(fromRootViewController: topVC) { [weak self] in
                 self?.didEarnReward = true
+                
+                NotificationCenter.default.post(name: NSNotification.Name("didEarnReward"),
+                                                object: AdMobManager.self)
             }
             AdResumeManager.shared.isShowingAd = true // check nếu show rewarded thig ko show resume
         }
